@@ -1,0 +1,38 @@
+$alert-colors: (
+  "default": $primary,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger,
+);
+
+.icyad-alert {
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  margin-bottom: $alert-margin-bottom;
+  border: $alert-border-width solid transparent;
+  border-radius: $alert-border-radius;
+  .icyad-alert-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    cursor: pointer;
+  }
+  .icyad-alert-title {
+    font-weight: $font-weight-bold;
+  }
+  .icyad-alert-content {
+    font-size: $alert-description-font-size;
+    margin: $alert-description-top-margin 0 0;
+  }
+  &.icyad-alert-unmount {
+    display: none;
+  }
+}
+
+@each $color, $value in $alert-colors {
+  .icyad-alert-#{$color} {
+    @include alert-style($value, darken($value, 5%), $white);
+  }
+}
