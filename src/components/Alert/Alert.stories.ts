@@ -42,9 +42,12 @@ export default {
 const Template = (args: any) => ({
   components: { IAlert: Alert },
   setup() {
-    return { args };
+    const handleClose = () => {
+      console.log("closed");
+    };
+    return { args, handleClose };
   },
-  template: '<i-alert v-bind="args"></i-alert>',
+  template: '<i-alert v-bind="args" @close="handleClose"></i-alert>',
 });
 
 export const Primary: any = Template.bind({});
