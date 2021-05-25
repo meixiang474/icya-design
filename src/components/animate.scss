@@ -6,3 +6,22 @@
     opacity: 0;
   }
 }
+.open-enter-from {
+  transform: scaleY(0);
+}
+.open-enter-to {
+  transform: scaleY(1);
+}
+.open-enter-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.open-leave-to {
+  transform: scaleY(0);
+}
+.open-leave-from {
+  transform: scaleY(1);
+}
+.open-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
