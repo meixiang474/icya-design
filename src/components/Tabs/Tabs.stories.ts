@@ -60,7 +60,7 @@ const Template = (args: any) => ({
   template: `
     <i-tabs mode="card">
       <i-tab-item name="1" label="1"><div>111<span>22</span></div></i-tab-item>
-      <i-tab-item name="2" label="2">222</i-tab-item>
+      <i-tab-item name="2" label="2" disabled>222</i-tab-item>
     </i-tabs>
   `,
 });

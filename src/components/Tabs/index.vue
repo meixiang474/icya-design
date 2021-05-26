@@ -10,6 +10,7 @@
               : ''
           } ${title.disabled === '' || title.disabled ? 'disabled' : ''}`
         "
+        v-bind="title"
         v-for="title in titles"
         :key="title.name"
         @click="handleClick(title.name)"
