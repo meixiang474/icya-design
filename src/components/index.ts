@@ -7,6 +7,8 @@ import SubMenu from "./SubMenu";
 import Tabs from "./Tabs";
 import TabItem from "./TabItem";
 import Icon from "./Icon";
+import Input from "./Input";
+import AutoComplete from "./AutoComplete";
 
 const components = [
   Button,
@@ -17,6 +19,8 @@ const components = [
   Tabs,
   TabItem,
   Icon,
+  Input,
+  AutoComplete,
 ];
 
 const install = (app: App) => {
@@ -25,7 +29,19 @@ const install = (app: App) => {
   });
 };
 
-export { install, Button, Alert, Menu, MenuItem, SubMenu, Tabs, TabItem, Icon };
+export {
+  install,
+  Button,
+  Alert,
+  Menu,
+  MenuItem,
+  SubMenu,
+  Tabs,
+  TabItem,
+  Icon,
+  Input,
+  AutoComplete,
+};
 
 export default {
   install,

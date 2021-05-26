@@ -1,8 +1,8 @@
-import Button from "./index.vue";
+import AutoComplete from "./index.vue";
 
 export default {
-  title: "Components/Button",
-  component: Button,
+  title: "Components/AutoComplete",
+  component: AutoComplete,
   argTypes: {
     // slots
     default: {
@@ -49,18 +49,11 @@ export default {
 };
 
 const Template = (args: any) => ({
-  components: { IButton: Button },
+  components: { IAutocomplete: AutoComplete },
   setup() {
-    const handleClick = () => {
-      alert("click");
-    };
-    return { args, handleClick };
+    return { args };
   },
-  template: '<i-button v-bind="args" @click="handleClick"></i-button>',
+  template: '<i-autocomplete v-bind="args"></i-autocomplete>',
 });
 
 export const Primary: any = Template.bind({});
-export const Large: any = Template.bind({});
-Large.args = {
-  size: "lg",
-};

@@ -1,0 +1,127 @@
+.icyad-input-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+  .icon-wrapper {
+    position: absolute;
+    height: 100%;
+    svg {
+      width: 35px;
+      path {
+        fill: #bbb !important;
+      }
+    }
+    justify-content: center;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.icon-wrapper + .icyad-input-inner {
+  padding-right: 35px;
+}
+.icyad-input-container {
+  width: 100%;
+  position: relative;
+}
+.icyad-input-inner {
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  font-family: $input-font-family;
+  font-size: $input-font-size;
+  font-weight: $input-font-weight;
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+  background-clip: padding-box;
+  border: 1px solid #bbb;
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  border-radius: $input-border-radius;
+
+  box-shadow: $input-box-shadow;
+  transition: $input-transition;
+
+  &:focus {
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $primary;
+    outline: 0;
+    // Avoid using mixin so we can pass custom focus shadow properly
+  }
+  &::placeholder {
+    color: $input-placeholder-color;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+  &:disabled {
+    background-color: $input-disabled-bg;
+    border-color: $input-disabled-border-color;
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+}
+
+.icyad-input-group-prepend,
+.icyad-input-group-append {
+  display: flex;
+  align-items: center;
+  padding: $input-padding-y $input-padding-x;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  font-size: $input-font-size; // Match inputs
+  font-weight: $font-weight-normal;
+  line-height: $input-line-height;
+  color: $input-group-addon-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $input-group-addon-bg;
+  border: $input-border-width solid $input-group-addon-border-color;
+  border-radius: $input-border-radius;
+}
+.icyad-input-group-prepend {
+  border-right: none;
+}
+.icyad-input-group-append {
+  border-left: none;
+}
+.icyad-input-sm .icyad-input-inner {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  font-size: $input-font-size-sm;
+  border-radius: $input-border-radius-sm;
+}
+.icyad-input-sm .icon-wrapper {
+  svg {
+    height: 15px;
+  }
+}
+.icyad-input-sm .icyad-input-group-prepend,
+.icyad-input-sm .icyad-input-group-append {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  font-size: 14px; // Match inputs
+  line-height: 21px;
+}
+.icyad-input-lg .icyad-input-group-prepend,
+.icyad-input-lg .icyad-input-group-append {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  font-size: 16px; // Match inputs
+  line-height: 30px;
+}
+.icyad-input-lg .icyad-input-inner {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  font-size: $input-font-size-lg;
+  border-radius: $input-border-radius-lg;
+}
+.icyad-input-group-prepend,
+.icyad-input-append .icyad-input-inner {
+  @include border-right-radius(0);
+}
+
+.icyad-input-group-append,
+.icyad-input-prepend .icyad-input-inner {
+  @include border-left-radius(0);
+}

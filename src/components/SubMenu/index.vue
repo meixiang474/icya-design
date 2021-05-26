@@ -2,6 +2,10 @@
   <li :class="classes" v-on="mode === 'horizontal' ? events : {}">
     <div class="icyad-submenu-title" v-on="mode === 'vertical' ? events : {}">
       {{ title }}
+      <icon
+        icon="arrowdown"
+        :class="`icyad-arrow-icon ${menuOpen ? 'icyad-is-opened' : ''}`"
+      ></icon>
     </div>
     <transition name="open">
       <ul v-show="menuOpen" :class="`icyad-submenu`">
@@ -21,9 +25,13 @@ import {
 } from "@vue/runtime-core";
 import { MENU_CONTEXT } from "../constant";
 import { MenuContext } from "../types";
+import Icon from "../Icon";
 
 export default defineComponent({
   name: "i-sub-menu",
+  components: {
+    Icon,
+  },
   props: {
     index: {
       type: [String, Number],

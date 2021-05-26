@@ -18,14 +18,23 @@
       color: $menu-item-active-color;
       border-bottom: $menu-item-active-border-width solid
         $menu-item-active-color;
+      path {
+        fill: $menu-item-active-color !important;
+      }
     }
     &.icyad-menu-item-disabled {
       color: $menu-item-disabled-color;
       border-bottom: none;
       cursor: not-allowed;
+      path {
+        fill: $menu-item-disabled-color !important;
+      }
       &:hover {
         color: $menu-item-disabled-color;
         border-bottom: none;
+        path {
+          fill: $menu-item-disabled-color !important;
+        }
       }
     }
   }
@@ -36,13 +45,10 @@
       align-items: center;
     }
     .icyad-arrow-icon {
+      width: 15px;
+      height: 15px;
       transition: transform 0.25s ease-in-out;
       margin-left: 3px;
-    }
-    &:hover {
-      .icyad-arrow-icon {
-        transform: rotate(180deg);
-      }
     }
   }
   .icyad-submenu {
@@ -93,14 +99,14 @@
       }
     }
   }
-  // .icyad-arrow-icon {
-  //   transform: rotate(0deg);
-  // }
-  // &.icyad-is-opened {
-  //   .icyad-arrow-icon {
-  //     transform: rotate(180deg);
-  //   }
-  // }
+  .icyad-submenu-item {
+    .icyad-arrow-icon {
+      transform: rotate(0deg);
+      &.icyad-is-opened {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }
 
 .icyad-menu-horizontal {
@@ -112,5 +118,12 @@
     left: 0;
     border: $menu-border-width solid $menu-border-color;
     box-shadow: $submenu-box-shadow;
+  }
+  .icyad-submenu-item {
+    &:hover {
+      .icyad-arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
