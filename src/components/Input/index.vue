@@ -82,10 +82,8 @@ export default defineComponent({
       return classes;
     });
     const handleInput = (e: Event) => {
-      if (props.value != null) {
-        ctx.emit("change", (e.target as any).value);
-        return;
-      }
+      ctx.emit("change", (e.target as any).value);
+      if (props.value != null) return;
       internalValue.value = (e.target as any).value;
     };
     return {

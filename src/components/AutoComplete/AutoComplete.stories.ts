@@ -49,11 +49,13 @@ export default {
 };
 
 const Template = (args: any) => ({
-  components: { IAutocomplete: AutoComplete },
+  components: { IAutoComplete: AutoComplete },
   setup() {
-    return { args };
+    const handleFetch = () => ["sam", "james", "green"];
+    return { args, handleFetch };
   },
-  template: '<i-autocomplete v-bind="args"></i-autocomplete>',
+  template:
+    '<i-auto-complete v-bind="args" :fetchSuggestions="handleFetch"></i-auto-complete>',
 });
 
 export const Primary: any = Template.bind({});
