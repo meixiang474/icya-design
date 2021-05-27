@@ -74,7 +74,7 @@ export default defineComponent({
     };
 
     return {
-      inputRef: inputRef.value.inputRef,
+      inputRef,
       internalValue,
       handleChange,
       suggestions,
