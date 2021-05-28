@@ -1,10 +1,8 @@
-import Tabs from "./index.vue";
-import TabItem from "../TabItem/index.vue";
-import Button from "../Button";
+import Tag from "./index.vue";
 
 export default {
-  title: "Components/Tabs",
-  component: Tabs,
+  title: "Components/Tag",
+  component: Tag,
   argTypes: {
     // slots
     default: {
@@ -51,21 +49,11 @@ export default {
 };
 
 const Template = (args: any) => ({
-  components: { ITabs: Tabs, ITabItem: TabItem, IButton: Button },
+  components: { ITag: Tag },
   setup() {
-    const handleSelect = (id: number) => {
-      console.log("select", id);
-    };
-    return { args, handleSelect };
+    return { args };
   },
-  template: `
-    <i-tabs mode="card">
-      <i-tab-item name="1" label="1"><div>111<span>22</span></div></i-tab-item>
-      <i-tab-item name="2" label="2">
-        <i-button>111</i-button>
-      </i-tab-item>
-    </i-tabs>
-  `,
+  template: '<i-tag v-bind="args" type="primary"></i-tag>',
 });
 
 export const Primary: any = Template.bind({});

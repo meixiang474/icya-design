@@ -1,26 +1,32 @@
 import { App } from "vue";
-import Button from "./Button";
-import Alert from "./Alert";
-import Menu from "./Menu";
-import MenuItem from "./MenuItem";
-import SubMenu from "./SubMenu";
-import Tabs from "./Tabs";
-import TabItem from "./TabItem";
-import Icon from "./Icon";
-import Input from "./Input";
-import AutoComplete from "./AutoComplete";
+import IButton from "./Button";
+import IAlert from "./Alert";
+import IMenu from "./Menu";
+import IMenuItem from "./MenuItem";
+import ISubMenu from "./SubMenu";
+import ITabs from "./Tabs";
+import ITabItem from "./TabItem";
+import IIcon from "./Icon";
+import IInput from "./Input";
+import IAutoComplete from "./AutoComplete";
+import ITag from "./Tag";
+import ISelect from "./Select";
+import IOption from "./Option";
 
 const components = [
-  Button,
-  Alert,
-  Menu,
-  MenuItem,
-  SubMenu,
-  Tabs,
-  TabItem,
-  Icon,
-  Input,
-  AutoComplete,
+  IButton,
+  IAlert,
+  IMenu,
+  IMenuItem,
+  ISubMenu,
+  ITabs,
+  ITabItem,
+  IIcon,
+  IInput,
+  IAutoComplete,
+  ITag,
+  ISelect,
+  IOption,
 ];
 
 const install = (app: App) => {
@@ -31,16 +37,19 @@ const install = (app: App) => {
 
 export {
   install,
-  Button,
-  Alert,
-  Menu,
-  MenuItem,
-  SubMenu,
-  Tabs,
-  TabItem,
-  Icon,
-  Input,
-  AutoComplete,
+  IButton,
+  IAlert,
+  IMenu,
+  IMenuItem,
+  ISubMenu,
+  ITabs,
+  ITabItem,
+  IIcon,
+  IInput,
+  IAutoComplete,
+  ITag,
+  ISelect,
+  IOption,
 };
 
 export default {

@@ -11,24 +11,29 @@
       @keydown="handleKeyDown"
       ref="inputRef"
     ></i-input>
-    <ul class="icyad-suggestion-list" v-if="suggestions.length > 0 || loading">
-      <div v-if="loading" class="suggestions-loading-icon">
-        <i-icon icon="loading" spin color="#bbb"></i-icon>
-      </div>
-      <template v-if="suggestions.length > 0 && !loading">
-        <li
-          v-for="(item, index) in suggestions"
-          :key="index"
-          @click="handleSelect(item)"
-          class="suggestion-item"
-          :class="{ 'is-active': index === highlightIndex }"
-        >
-          <slot :suggestion="item" :index="index">
-            {{ item }}
-          </slot>
-        </li>
-      </template>
-    </ul>
+    <transition name="open">
+      <ul
+        class="icyad-suggestion-list"
+        v-if="suggestions.length > 0 || loading"
+      >
+        <div v-if="loading" class="suggestions-loading-icon">
+          <i-icon icon="loading" spin color="#bbb"></i-icon>
+        </div>
+        <template v-if="suggestions.length > 0 && !loading">
+          <li
+            v-for="(item, index) in suggestions"
+            :key="index"
+            @click="handleSelect(item)"
+            class="suggestion-item"
+            :class="{ 'is-active': index === highlightIndex }"
+          >
+            <slot :suggestion="item" :index="index">
+              {{ item }}
+            </slot>
+          </li>
+        </template>
+      </ul>
+    </transition>
   </div>
 </template>
 
@@ -66,6 +71,11 @@ export default defineComponent({
     });
 
     const fetchSuggestions = debounce((val: string) => {
+      if (!val) {
+        loading.value = false;
+        suggestions.value = [];
+        return;
+      }
       if (props.fetchSuggestions) {
         const results = props.fetchSuggestions(val);
         if (results instanceof Promise) {
@@ -91,11 +101,6 @@ export default defineComponent({
       ctx.emit("change", val);
       if (props.value == null) {
         internalValue.value = val;
-      }
-      if (!val) {
-        loading.value = false;
-        suggestions.value = [];
-        return;
       }
       fetchSuggestions(val);
     };

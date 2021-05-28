@@ -30,7 +30,7 @@
   transform: scaleY(1);
 }
 .open-enter-active {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .open-leave-to {
@@ -40,5 +40,18 @@
   transform: scaleY(1);
 }
 .open-leave-active {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-in-out;
 }

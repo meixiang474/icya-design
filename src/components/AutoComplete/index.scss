@@ -13,6 +13,7 @@
   left: 0;
   border: $menu-border-width solid $menu-border-color;
   width: 100%;
+  transform-origin: top;
   .suggestions-loading-icon {
     display: flex;
     align-items: center;
@@ -25,8 +26,8 @@
     transition: $menu-transition;
     color: $body-color;
     &.is-active {
-      background: $menu-item-active-color !important;
-      color: $white !important;
+      background: rgba($menu-item-active-color, 0.1) !important;
+      color: $menu-item-active-color !important;
     }
     &:hover {
       color: $menu-item-active-color !important;

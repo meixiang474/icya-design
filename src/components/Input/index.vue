@@ -15,6 +15,7 @@
         :value="value == null ? internalValue : value"
         :disabled="disabled"
         :placeholder="placeholder"
+        :readonly="readonly"
       />
     </div>
     <div class="icyad-input-group-append" v-if="hasAppend">
@@ -32,6 +33,10 @@ type InputSize = "lg" | "sm" | "md";
 type InputType = "password" | "text";
 
 export const inputProps = {
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
     type: Boolean,
     default: false,
