@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, withCtx } from "@vue/runtime-core";
+import { defineComponent, PropType, ref } from "@vue/runtime-core";
 import IIcon from "../Icon";
 
 type TagType = "info" | "primary" | "warning" | "danger" | "success";
