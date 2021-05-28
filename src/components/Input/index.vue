@@ -64,7 +64,7 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const internalValue = ref("");
-    const inputRef = ref();
+    const inputRef = ref({} as HTMLInputElement);
     const hasPrepend = computed(() => {
       return ctx.slots.prepend;
     });

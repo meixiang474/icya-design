@@ -9,7 +9,7 @@
       </div>
     </slot>
     <div v-if="closable" class="icyad-alert-close" @click="handleClose">
-      关闭
+      <i-icon icon="closeAlt" color="white" width="14px" height="14px"></i-icon>
     </div>
   </div>
 </template>
@@ -22,11 +22,15 @@ import {
   PropType,
   ref,
 } from "@vue/runtime-core";
+import Icon from "../Icon";
 
 type AlertType = "success" | "default" | "danger" | "warning";
 
 export default defineComponent({
   name: "i-alert",
+  components: {
+    IIcon: Icon,
+  },
   props: {
     closable: {
       type: Boolean,
@@ -40,7 +44,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    delay: {
+    duration: {
       type: Number,
       default: 0.2,
     },
@@ -65,7 +69,7 @@ export default defineComponent({
     const styles = computed(() => {
       const styles: { [key: string]: any } = {};
       if (hide.value) {
-        styles.animation = `hide ${props.delay}s ease-in-out forwards`;
+        styles.animation = `hide ${props.duration}s ease-in-out forwards`;
       }
       return styles;
     });
@@ -77,7 +81,7 @@ export default defineComponent({
         if (props.isUnmount) {
           umnount.value = true;
         }
-      }, props.delay * 1000);
+      }, props.duration * 1000);
     };
 
     onUnmounted(() => {

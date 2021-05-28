@@ -23,12 +23,19 @@ export default defineComponent({
       type: String,
       default: "black",
     },
+    spin: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const svgClasses = computed(() => {
       const classes = ["icyad-icon"];
       if (props.block) {
         classes.push("is-block");
+      }
+      if (props.spin) {
+        classes.push("rotate-animation");
       }
       return classes;
     });

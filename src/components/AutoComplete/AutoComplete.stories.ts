@@ -51,11 +51,20 @@ export default {
 const Template = (args: any) => ({
   components: { IAutoComplete: AutoComplete },
   setup() {
-    const handleFetch = () => ["sam", "james", "green"];
+    const handleFetch = (val: string) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([val, "sam", "lily"]);
+        }, 300);
+      });
+    };
     return { args, handleFetch };
   },
-  template:
-    '<i-auto-complete v-bind="args" :fetchSuggestions="handleFetch"></i-auto-complete>',
+  template: `<i-auto-complete v-bind="args" :fetchSuggestions="handleFetch">
+    <template #default="slotProps">
+      {{slotProps.suggestion}}-{{slotProps.index}}
+    </template>
+  </i-auto-complete>`,
 });
 
 export const Primary: any = Template.bind({});

@@ -2,10 +2,10 @@
   <li :class="classes" v-on="mode === 'horizontal' ? events : {}">
     <div class="icyad-submenu-title" v-on="mode === 'vertical' ? events : {}">
       {{ title }}
-      <icon
+      <i-icon
         icon="arrowdown"
         :class="`icyad-arrow-icon ${menuOpen ? 'icyad-is-opened' : ''}`"
-      ></icon>
+      ></i-icon>
     </div>
     <transition name="open">
       <ul v-show="menuOpen" :class="`icyad-submenu`">
@@ -30,7 +30,7 @@ import Icon from "../Icon";
 export default defineComponent({
   name: "i-sub-menu",
   components: {
-    Icon,
+    IIcon: Icon,
   },
   props: {
     index: {

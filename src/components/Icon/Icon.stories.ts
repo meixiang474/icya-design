@@ -1,4 +1,6 @@
 import Icon from "./index.vue";
+import icons from "../icons";
+import "./Icon.stories.scss";
 
 export default {
   title: "Components/Icon",
@@ -50,7 +52,27 @@ export default {
 
 const Template = (args: any) => ({
   components: { IIcon: Icon },
-  template: `<i-icon icon="watch" color="red"></i-icon>`,
+  setup() {
+    return { args };
+  },
+  template: `<i-icon v-bind="args" ></i-icon>`,
 });
 
 export const Primary: any = Template.bind({});
+Primary.args = {
+  icon: "watch",
+};
+
+export const Label = () => ({
+  components: { IIcon: Icon },
+  setup() {
+    console.log(icons);
+    return { icons };
+  },
+  template: `<ul class="icon-story-ul">
+    <li v-for="(value, key) in icons" :key="key" class="icon-story-li">
+      <i-icon :icon="key"></i-icon>
+      <div class="icon-story-div">{{key}}</div>
+    </li>
+  </ul>`,
+});
