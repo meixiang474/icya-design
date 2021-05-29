@@ -5,3 +5,5 @@ export const KEYBOARD = {
   DOWN: "ArrowDown",
   ESC: "Escape",
 };
+export const SELECT_CONTEXT = "SELECT_CONTEXT";
+export const SELECT_EVENT = "SELECT_EVENT";

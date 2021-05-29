@@ -25,6 +25,22 @@
     z-index: 2;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &.icyad-is-disabled {
+      cursor: not-allowed;
+    }
+    .icyad-arrow-icon {
+      width: 15px;
+      height: 15px;
+      transition: transform 0.25s ease-in-out;
+      margin-right: 10px;
+      transform: rotate(0);
+      &.icyad-is-opened {
+        transform: rotate(180deg);
+      }
+    }
   }
   .icyad-select-options-container {
     position: absolute;
@@ -35,5 +51,43 @@
     width: 100%;
     padding-left: 0;
     list-style: none;
+    background-color: $white;
+    .options-container-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .icyad-select-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $white;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+      &.icyad-is-active {
+        background: rgba($menu-item-active-color, 0.1) !important;
+        color: $menu-item-active-color !important;
+      }
+      &.icyad-is-disabled {
+        color: $gray-500;
+        cursor: not-allowed;
+        pointer-events: none;
+        background-color: $white;
+      }
+      &:hover {
+        color: $menu-item-active-color !important;
+        &.icyad-is-active {
+          color: $menu-item-active-color !important;
+        }
+      }
+    }
   }
 }

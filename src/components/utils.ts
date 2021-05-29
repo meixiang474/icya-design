@@ -1,3 +1,7 @@
+import mitt from "mitt";
+
+export const emitter = mitt();
+
 export function debounce(fn: (...args: any[]) => any, delay = 500) {
   let timer: any;
   return function(this: any, ...args: any[]) {

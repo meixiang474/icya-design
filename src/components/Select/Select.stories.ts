@@ -1,3 +1,4 @@
+import { ref } from "vue";
 import Select from "./index.vue";
 import Option from "../Option";
 
@@ -52,15 +53,20 @@ export default {
 const Template = (args: any) => ({
   components: { ISelect: Select, IOption: Option },
   setup() {
+    const value = ref<string[]>([]);
     return {
       args,
+      value,
     };
   },
   template: `
-  <i-select v-bind="args">
-    <i-option></i-option>
-    <i-option></i-option>
-  </i-select>`,
+  <div :style="{width: '420px'}">
+    <i-select v-bind="args" placeholder="来选择">
+      <i-option value="1" disabled></i-option>
+      <i-option value="2"></i-option>
+    </i-select>
+  </div>
+  `,
 });
 
 export const Primary: any = Template.bind({});

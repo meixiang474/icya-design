@@ -66,7 +66,6 @@ Primary.args = {
 export const Label = () => ({
   components: { IIcon: Icon },
   setup() {
-    console.log(icons);
     return { icons };
   },
   template: `<ul class="icon-story-ul">

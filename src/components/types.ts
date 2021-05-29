@@ -6,3 +6,11 @@ export interface MenuContext {
   mode: ComputedRef<"horizontal" | "vertical">;
   defaultOpenSubmenus: (string | number)[];
 }
+
+export interface SelectContext {
+  externalValue: ComputedRef<string | string[] | undefined>;
+  internalValue: Ref<string>;
+  internalValues: Ref<string[]>;
+  multiple: ComputedRef<boolean>;
+  activeValue: Ref<string>;
+}

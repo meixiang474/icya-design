@@ -32,7 +32,7 @@
     &:hover {
       color: $menu-item-active-color !important;
       &.is-active {
-        color: $white !important;
+        color: $menu-item-active-color !important;
       }
     }
   }

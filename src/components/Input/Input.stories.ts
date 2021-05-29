@@ -26,6 +26,14 @@ export default {
         options: ["lg", "sm", "md"],
       },
     },
+    placeholder: {
+      table: {
+        category: "props",
+      },
+      control: {
+        type: "text",
+      },
+    },
   },
 };
 
