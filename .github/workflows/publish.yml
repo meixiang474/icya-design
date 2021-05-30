@@ -14,7 +14,8 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: |
+      - name: publish
+        run: |
           npm i
           npm publish
         env:
