@@ -49,7 +49,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emit: ["close"],
+  emits: ["close"],
   setup(props, ctx) {
     const visible = ref(true);
 

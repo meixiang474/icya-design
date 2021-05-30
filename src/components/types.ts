@@ -12,5 +12,6 @@ export interface SelectContext {
   internalValue: Ref<string>;
   internalValues: Ref<string[]>;
   multiple: ComputedRef<boolean>;
-  activeValue: Ref<string>;
+  activeIndex: Ref<number>;
+  availableValues: Ref<string[]>;
 }

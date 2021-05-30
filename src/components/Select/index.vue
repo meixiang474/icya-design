@@ -33,6 +33,15 @@
         <slot v-else></slot>
       </ul>
     </transition>
+    <template v-if="multiple">
+      <div
+        v-for="(item, index) in inputValues"
+        :key="item"
+        class="icyad-select-tag"
+      >
+        <i-tag @close="handleClose(index)" closable>{{ item }}</i-tag>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -50,14 +59,16 @@ import {
 import { useClickOutside } from "../hooks";
 import IInput from "../Input";
 import IIcon from "../Icon";
-import { SELECT_CONTEXT, SELECT_EVENT } from "../constant";
-import { emitter } from "../utils";
+import ITag from "../Tag";
+import { SELECT_CONTEXT, SELECT_EVENT, KEYBOARD } from "../constant";
+import { emitter, exchangeValueToLabel } from "../utils";
 
 export default defineComponent({
   name: "i-select",
   components: {
     IInput,
     IIcon,
+    ITag,
   },
   props: {
     disabled: {
@@ -83,12 +94,29 @@ export default defineComponent({
   setup(props, ctx) {
     const externalValue = computed(() => props.value);
     const multiple = computed(() => props.multiple);
+
     const internalValue = ref(
       Array.isArray(props.defaultValue) ? "" : props.defaultValue
     );
+    const internalLabel = computed(() => {
+      return exchangeValueToLabel(
+        typeof externalValue.value === "string"
+          ? externalValue.value
+          : internalValue.value,
+        ctx
+      ) as string;
+    });
     const internalValues = ref<string[]>(
       Array.isArray(props.defaultValue) ? props.defaultValue : []
     );
+    const internalLabels = computed(() => {
+      return exchangeValueToLabel(
+        Array.isArray(externalValue.value)
+          ? externalValue.value
+          : internalValues.value,
+        ctx
+      ) as string[];
+    });
     const containerRef = ref({} as HTMLDivElement);
     const inputRef = ref();
     const open = ref(false);
@@ -105,15 +133,11 @@ export default defineComponent({
       return 0;
     });
     const inputValue = computed(() => {
-      return multiple.value
-        ? ""
-        : typeof externalValue.value === "string"
-        ? externalValue.value
-        : internalValue.value;
+      return multiple.value ? "" : internalLabel.value;
     });
     const inputPlaceholder = computed(() => {
       return multiple.value
-        ? (externalValue.value == null
+        ? (!Array.isArray(externalValue.value)
             ? internalValues.value
             : externalValue.value
           ).length > 0
@@ -121,12 +145,29 @@ export default defineComponent({
           : props.placeholder
         : props.placeholder;
     });
+    const inputValues = computed(() => {
+      return multiple.value ? internalLabels.value : [];
+    });
+
+    const activeIndex = ref(-1);
+    const availableValues = computed(() => {
+      return ctx.slots.default!()
+        .filter(
+          (item) =>
+            item.props &&
+            item.props.value &&
+            (item.props.disabled == null || item.props.disabled === false)
+        )
+        .map((item) => item.props!.value);
+    });
 
     provide(SELECT_CONTEXT, {
       externalValue,
       internalValue,
       internalValues,
       multiple,
+      activeIndex,
+      availableValues,
     });
 
     useClickOutside(containerRef, () => {
@@ -141,18 +182,29 @@ export default defineComponent({
 
     const handleEvent = (val?: string) => {
       if (multiple.value) {
-        ctx.emit("change", [
-          ...(externalValue.value == null
-            ? internalValues.value
-            : externalValue.value),
-          val,
-        ]);
+        let values = [
+          ...(Array.isArray(externalValue.value)
+            ? externalValue.value
+            : internalValues.value),
+        ];
+        if (values.includes(val!)) {
+          values = values.filter((item) => item !== val);
+        } else {
+          values.push(val!);
+        }
+        ctx.emit("change", val);
       } else {
         ctx.emit("change", val);
       }
-      if (externalValue.value != null) return;
+      if (Array.isArray(externalValue.value)) return;
       if (multiple.value) {
-        internalValues.value.push(val!);
+        if (internalValues.value.includes(val!)) {
+          internalValues.value = internalValues.value.filter(
+            (item) => item !== val
+          );
+        } else {
+          internalValues.value.push(val!);
+        }
       } else {
         internalValue.value = val!;
       }
@@ -169,8 +221,50 @@ export default defineComponent({
       emitter.off(SELECT_EVENT, handleEvent);
     });
 
-    const handleKeyDown = () => {
-      console.log(1);
+    const highlight = (index: number) => {
+      if (index < 0) {
+        activeIndex.value = 0;
+        return;
+      }
+      if (index >= availableValues.value.length) {
+        activeIndex.value = availableValues.value.length - 1;
+        return;
+      }
+      activeIndex.value = index;
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!open.value) return;
+      switch (e.key) {
+        case KEYBOARD.ENTER:
+          if (availableValues.value[activeIndex.value]) {
+            handleEvent(availableValues.value[activeIndex.value]);
+          }
+          break;
+        case KEYBOARD.UP:
+          highlight(activeIndex.value - 1);
+          break;
+        case KEYBOARD.DOWN:
+          highlight(activeIndex.value + 1);
+          break;
+        case KEYBOARD.ESC:
+          open.value = false;
+          break;
+        default:
+          break;
+      }
+    };
+
+    const handleClose = (index: number) => {
+      let values = [
+        ...(Array.isArray(externalValue.value)
+          ? externalValue.value
+          : internalValues.value),
+      ];
+      values.splice(index, 1);
+      ctx.emit("change", values);
+      if (Array.isArray(externalValue.value)) return;
+      internalValues.value.splice(index, 1);
     };
 
     return {
@@ -186,6 +280,8 @@ export default defineComponent({
       inputValue,
       inputPlaceholder,
       handleKeyDown,
+      inputValues,
+      handleClose,
     };
   },
 });

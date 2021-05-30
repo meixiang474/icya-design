@@ -1,7 +1,7 @@
 <template>
   <slot :label="label" :value="value">
     <li :class="classes" @click="handleClick">
-      {{ label == null ? value : label }}
+      {{ finalLabel }}
       <i-icon icon="check" color="#0d6efd" v-if="isChecked"></i-icon>
     </li>
   </slot>
@@ -33,9 +33,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { internalValue, internalValues, multiple, externalValue } = inject<
-      SelectContext
-    >(SELECT_CONTEXT)!;
+    const {
+      internalValue,
+      internalValues,
+      multiple,
+      externalValue,
+      availableValues,
+      activeIndex,
+    } = inject<SelectContext>(SELECT_CONTEXT)!;
+
+    const finalLabel = computed(() => {
+      return props.label == null ? props.value : props.label;
+    });
 
     const isChecked = computed(() => {
       if (multiple.value) {
@@ -56,13 +65,20 @@ export default defineComponent({
       return false;
     });
 
+    const isActive = computed(() => {
+      return availableValues.value[activeIndex.value] === props.value;
+    });
+
     const classes = computed(() => {
       const classes = ["icyad-select-item"];
       if (props.disabled) {
         classes.push("icyad-is-disabled");
       }
-      if (isChecked.value) {
+      if (isActive.value) {
         classes.push("icyad-is-active");
+      }
+      if (isChecked.value) {
+        classes.push("icyad-is-checked");
       }
       return classes;
     });
@@ -75,6 +91,7 @@ export default defineComponent({
       handleClick,
       classes,
       isChecked,
+      finalLabel,
     };
   },
 });

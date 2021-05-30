@@ -61,9 +61,13 @@ const Template = (args: any) => ({
   },
   template: `
   <div :style="{width: '420px'}">
-    <i-select v-bind="args" placeholder="来选择">
+    <i-select v-bind="args" placeholder="来选择" multiple>
       <i-option value="1" disabled></i-option>
-      <i-option value="2"></i-option>
+      <i-option value="apple" label="苹果"></i-option>
+      <i-option value="orange" label="橘子"></i-option>
+      <i-option value="banana" label="香蕉"></i-option>
+      <i-option value="watermelon" label="柠檬"></i-option>
+      <i-option value="666666666666666666"></i-option>
     </i-select>
   </div>
   `,
