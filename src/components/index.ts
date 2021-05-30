@@ -12,6 +12,7 @@ import IAutoComplete from "./AutoComplete";
 import ITag from "./Tag";
 import ISelect from "./Select";
 import IOption from "./Option";
+import IProgress from "./Progress";
 
 const components = [
   IButton,
@@ -27,6 +28,7 @@ const components = [
   ITag,
   ISelect,
   IOption,
+  IProgress,
 ];
 
 const install = (app: App) => {
@@ -50,6 +52,7 @@ export {
   ITag,
   ISelect,
   IOption,
+  IProgress,
 };
 
 export default {

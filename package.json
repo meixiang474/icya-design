@@ -36,8 +36,11 @@
   "module": "dist/icyad.esm.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "mitt": "^2.1.0"
+    "lodash-es": "^4.17.21",
+    "mitt": "^2.1.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.2",
@@ -51,7 +54,10 @@
     "@storybook/addon-links": "^6.2.9",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/vue3": "^6.2.9",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^24.0.19",
+    "@types/lodash-es": "^4.17.4",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "^4.5.13",

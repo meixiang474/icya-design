@@ -1,0 +1,19 @@
+.icyad-progress {
+  height: 8px;
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+  .icyad-progress-content {
+    height: 100%;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+  }
+  .icyad-progress-text {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.45);
+  }
+}

@@ -33,5 +33,5 @@ export default {
     }),
     vue(),
   ],
-  external: ["vue", "mitt"],
+  external: ["vue", "mitt", "lodash-es", "axios", "uuid"],
 };

@@ -1,0 +1,109 @@
+.icyad-upload-area {
+  display: inline-block;
+}
+.icyad-upload-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.icyad-upload-list li {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  min-width: 200px;
+  position: relative;
+  &:first-child {
+    margin-top: 10px;
+  }
+  .icyad-upload-list-thumbnail {
+    vertical-align: middle;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    object-fit: cover;
+  }
+  .icyad-file-icon {
+    svg {
+      margin-right: 5px;
+      path {
+        fill: rgba(0, 0, 0, 0.45) !important;
+      }
+    }
+  }
+  .icyad-filename {
+    margin-left: 5px;
+    margin-right: 40px;
+  }
+  &.icyad-upload-error {
+    color: #f5222d;
+    svg {
+      path {
+        fill: #f5222d !important;
+      }
+    }
+    .lego-progress-content {
+      background-color: #f5222d !important;
+    }
+    .lego-progress-text {
+      color: #f5222d;
+    }
+  }
+  &.icyad-upload-success {
+    color: rgb(24, 144, 255);
+    svg {
+      path {
+        fill: rgb(24, 144, 255) !important;
+      }
+    }
+    .icyad-progress-text {
+      color: rgb(24, 144, 255);
+    }
+  }
+  .icyad-file-status {
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    line-height: inherit;
+  }
+  .icyad-delete-icon {
+    display: none;
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: inherit;
+    cursor: pointer;
+  }
+  &:hover {
+    background-color: #efefef;
+    .icyad-file-status {
+      display: none;
+    }
+    .icyad-delete-icon {
+      display: block;
+    }
+  }
+}
+.icyad-drag-upload {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  background-color: #efefef;
+  padding: 5px;
+  border: 1px dashed black;
+  line-height: 200px;
+  text-align: center;
+}
+.is-dragover {
+  .icyad-drag-upload {
+    border: 1px dashed rgb(24, 144, 255);
+    background-color: rgba(24, 144, 255, 0.2);
+  }
+}
