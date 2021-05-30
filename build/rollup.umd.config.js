@@ -8,6 +8,9 @@ export default {
     globals: {
       vue: "Vue",
       "lodash-es": "_",
+      mitt: "mitt",
+      axios: "axios",
+      uuid: "uuid",
     },
     exports: "named",
   },
