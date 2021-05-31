@@ -1,5 +1,8 @@
 <template>
   <slot></slot>
+  <slot name="title" :label="label ? label : name">
+    {{ label ? label : name }}
+  </slot>
 </template>
 
 <script lang="ts">

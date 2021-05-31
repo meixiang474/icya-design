@@ -15,7 +15,10 @@
         :key="title.name"
         @click="handleClick(title.name)"
       >
-        {{ title.label }}
+        <render-vnode v-if="title.vnode" :v-node="title.vnode"></render-vnode>
+        <template v-else>
+          {{ title.label ? title.label : title.name }}
+        </template>
       </li>
     </ul>
     <div class="icyad-tabs-content">
@@ -57,8 +60,16 @@ export default defineComponent({
       return ctx.slots.default!();
     });
     const titles = computed<{ [key: string]: any }>(() => {
-      return slots.value.map((slot) => slot.props);
+      return slots.value.map((slot) => ({
+        ...slot.props,
+        vnode: (slot.children as any).title
+          ? (slot.children as any).title({
+              label: slot.props!.label ? slot.props!.label : slot.props!.name,
+            })
+          : null,
+      }));
     });
+    console.log(titles.value);
     const titleClasses = computed(() => {
       const classes = ["icyad-tabs-title", `icyad-tabs-title-${props.mode}`];
       return classes;
