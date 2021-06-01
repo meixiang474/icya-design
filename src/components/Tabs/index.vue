@@ -69,7 +69,6 @@ export default defineComponent({
           : null,
       }));
     });
-    console.log(titles.value);
     const titleClasses = computed(() => {
       const classes = ["icyad-tabs-title", `icyad-tabs-title-${props.mode}`];
       return classes;

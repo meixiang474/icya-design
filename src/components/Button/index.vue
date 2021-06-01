@@ -3,18 +3,26 @@
     <slot>link</slot>
   </a>
   <button v-else :class="classes" :disabled="disabled">
+    <slot name="icon" v-if="icon || loading">
+      <i-icon :icon="icon || 'loading'" :spin="loading"></i-icon>
+    </slot>
     <slot>button</slot>
   </button>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "@vue/runtime-core";
+import IIcon from "../Icon";
+import icons from "../icons";
 
 type ButtonSize = "lg" | "sm" | "md";
 type ButtonType = "primary" | "default" | "danger" | "link";
 
 export default defineComponent({
   name: "i-button",
+  components: {
+    IIcon,
+  },
   props: {
     disabled: {
       type: Boolean,
@@ -29,6 +37,17 @@ export default defineComponent({
       default: "default",
     },
     href: String,
+    icon: {
+      type: String as PropType<keyof typeof icons>,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    round: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     // button classes
@@ -42,6 +61,9 @@ export default defineComponent({
       // 为链接并且disabled为true时添加 disabled类名
       if (props.disabled && props.btnType === "link") {
         classes.push("disabled");
+      }
+      if (props.round) {
+        classes.push("icyad-is-round");
       }
       return classes;
     });

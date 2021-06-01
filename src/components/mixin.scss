@@ -19,18 +19,33 @@
     color: $hover-color;
     background: $hover-background;
     border-color: $hover-border;
+    svg {
+      path {
+        fill: $hover-color !important;
+      }
+    }
   }
   &:focus,
   &.focus {
     color: $hover-color;
     background: $hover-background;
     border-color: $hover-border;
+    svg {
+      path {
+        fill: $hover-color !important;
+      }
+    }
   }
   &[disabled],
   &.disbale {
     color: $color;
     background: $background;
     border-color: $border;
+    svg {
+      path {
+        fill: $color !important;
+      }
+    }
   }
 }
 

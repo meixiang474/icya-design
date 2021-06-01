@@ -1,4 +1,5 @@
 import Button from "./index.vue";
+import ButtonGroup from "../ButtonGroup";
 
 export default {
   title: "Components/Button",
@@ -56,7 +57,8 @@ const Template = (args: any) => ({
     };
     return { args, handleClick };
   },
-  template: '<i-button v-bind="args" @click="handleClick"></i-button>',
+  template:
+    '<i-button v-bind="args" @click="handleClick" icon="loading" loading ></i-button>',
 });
 
 export const Primary: any = Template.bind({});
@@ -64,3 +66,17 @@ export const Large: any = Template.bind({});
 Large.args = {
   size: "lg",
 };
+
+export const 按钮组 = (args: any) => ({
+  components: { IButton: Button, IButtonGroup: ButtonGroup },
+  setup() {
+    return { args };
+  },
+  template: `
+    <i-button-group>
+      <i-button v-bind="args">111</i-button>
+      <i-button v-bind="args"/>
+      <i-button v-bind="args"/>
+    </i-button-group>
+  `,
+});

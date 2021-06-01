@@ -1,14 +1,20 @@
 .icyad-btn {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   font-weight: $btn-font-weight;
   line-height: $btn-line-height;
   color: $body-color;
   white-space: nowrap;
   text-align: center;
   vertical-align: middle;
+  align-items: center;
   background-image: none;
   border: $btn-border-width solid transparent;
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+  }
   @include button-size(
     $btn-padding-y,
     $btn-padding-x,
@@ -27,6 +33,9 @@
       pointer-events: none;
     }
   }
+  &.icyad-is-round {
+    border-radius: 19px;
+  }
 }
 
 .icyad-btn-lg {
@@ -36,6 +45,14 @@
     $btn-font-size-lg,
     $border-radius-lg
   );
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+  }
+  &.icyad-is-round {
+    border-radius: 24px;
+  }
 }
 
 .icyad-btn-sm {
@@ -45,13 +62,31 @@
     $btn-font-size-sm,
     $border-radius-sm
   );
+  svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+  }
+  &.icyad-is-round {
+    border-radius: 15.5px;
+  }
 }
 
 .icyad-btn-primary {
   @include button-style($primary, $primary, $white);
+  svg {
+    path {
+      fill: $white !important;
+    }
+  }
 }
 .icyad-btn-danger {
   @include button-style($danger, $danger, $white);
+  svg {
+    path {
+      fill: $white !important;
+    }
+  }
 }
 .icyad-btn-default {
   @include button-style(
@@ -81,5 +116,45 @@
   &.disabled {
     color: $btn-link-disabled-color;
     pointer-events: none;
+  }
+}
+
+.icyad-button-group {
+  .icyad-btn {
+    border-radius: 0;
+    margin-right: 1px;
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+    &:last-child {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin-right: 0;
+    }
+  }
+  .icyad-btn-lg {
+    &:first-child {
+      border-top-left-radius: $border-radius-lg;
+      border-bottom-left-radius: $border-radius-lg;
+    }
+    &:last-child {
+      border-top-right-radius: $border-radius-lg;
+      border-bottom-right-radius: $border-radius-lg;
+    }
+  }
+  .icyad-btn-sm {
+    &:first-child {
+      border-top-left-radius: $border-radius-sm;
+      border-bottom-left-radius: $border-radius-sm;
+    }
+    &:last-child {
+      border-top-right-radius: $border-radius-sm;
+      border-bottom-right-radius: $border-radius-sm;
+    }
   }
 }

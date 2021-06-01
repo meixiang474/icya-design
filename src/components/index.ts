@@ -1,5 +1,6 @@
 import { App } from "vue";
 import IButton from "./Button";
+import IButtonGroup from "./ButtonGroup";
 import IAlert from "./Alert";
 import IMenu from "./Menu";
 import IMenuItem from "./MenuItem";
@@ -17,6 +18,7 @@ import IUpload from "./Upload";
 
 const components = [
   IButton,
+  IButtonGroup,
   IAlert,
   IMenu,
   IMenuItem,
@@ -42,6 +44,7 @@ const install = (app: App) => {
 export {
   install,
   IButton,
+  IButtonGroup,
   IAlert,
   IMenu,
   IMenuItem,
