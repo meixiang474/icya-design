@@ -1,0 +1,12 @@
+.icyad-col {
+  box-sizing: border-box;
+  @for $i from 1 through 24 {
+    &.icyad-col-span-#{$i} {
+      flex: (1 / 24 * $i * 100) * 1%;
+      max-width: (1 / 24 * $i * 100) * 1%;
+    }
+    &.icyad-col-offset-#{$i} {
+      margin-left: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}

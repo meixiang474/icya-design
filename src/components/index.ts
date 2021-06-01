@@ -15,6 +15,8 @@ import ISelect from "./Select";
 import IOption from "./Option";
 import IProgress from "./Progress";
 import IUpload from "./Upload";
+import IRow from "./Row";
+import ICol from "./Col";
 
 const components = [
   IButton,
@@ -33,6 +35,8 @@ const components = [
   IOption,
   IProgress,
   IUpload,
+  IRow,
+  ICol,
 ];
 
 const install = (app: App) => {
@@ -59,6 +63,8 @@ export {
   IOption,
   IProgress,
   IUpload,
+  IRow,
+  ICol,
 };
 
 export default {

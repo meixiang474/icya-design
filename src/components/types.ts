@@ -15,3 +15,7 @@ export interface SelectContext {
   activeIndex: Ref<number>;
   availableValues: Ref<string[]>;
 }
+
+export interface LayoutContext {
+  gutter: ComputedRef<number>;
+}

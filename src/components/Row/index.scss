@@ -1,0 +1,16 @@
+.icyad-row {
+  display: flex;
+  flex-wrap: wrap;
+  &.icyad-row-end {
+    justify-content: flex-end;
+  }
+  &.icyad-row-center {
+    justify-content: center;
+  }
+  &.icyad-row-space-arround {
+    justify-content: space-around;
+  }
+  &.icyad-row-space-between {
+    justify-content: space-between;
+  }
+}
