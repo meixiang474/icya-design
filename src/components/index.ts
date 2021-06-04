@@ -17,6 +17,7 @@ import IProgress from "./Progress";
 import IUpload from "./Upload";
 import IRow from "./Row";
 import ICol from "./Col";
+import IMessage from "./Message";
 
 const components = [
   IButton,
@@ -65,6 +66,7 @@ export {
   IUpload,
   IRow,
   ICol,
+  IMessage,
 };
 
 export default {

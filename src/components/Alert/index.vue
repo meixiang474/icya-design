@@ -48,8 +48,14 @@ export default defineComponent({
       type: Number,
       default: 0.2,
     },
-    title: String,
-    content: String,
+    title: {
+      type: String,
+      default: "",
+    },
+    content: {
+      type: String,
+      default: "",
+    },
   },
   emits: ["close"],
   setup(props, ctx) {

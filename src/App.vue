@@ -1,23 +1,23 @@
 <template>
-  <div></div>
+  <i-alert title="标题" content="这是内容" @close="handleClose"></i-alert>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { IMessage, IAlert } from "./components";
 
 export default defineComponent({
   name: "App",
-  components: {},
+  components: {
+    IAlert,
+  },
+  setup() {
+    const handleClose = () => {
+      IMessage.success("close事件触发成功");
+    };
+    return {
+      handleClose,
+    };
+  },
 });
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

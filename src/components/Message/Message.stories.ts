@@ -1,10 +1,9 @@
-import Tabs from "./index.vue";
-import TabItem from "../TabItem/index.vue";
-import Button from "../Button";
+import Message from "./message";
+import IButton from "../Button";
 
 export default {
-  title: "Components/Tabs",
-  component: Tabs,
+  title: "Components/Message",
+  component: Message,
   argTypes: {
     // slots
     default: {
@@ -51,25 +50,14 @@ export default {
 };
 
 const Template = (args: any) => ({
-  components: { ITabs: Tabs, ITabItem: TabItem, IButton: Button },
+  components: { IButton },
   setup() {
-    const handleSelect = (id: number) => {
-      console.log("select", id);
+    const handleClick = () => {
+      Message.info("aaa");
     };
-    return { args, handleSelect };
+    return { args, handleClick };
   },
-  template: `
-    <i-tabs >
-      <i-tab-item name="1" label="1"><div>111<span>22</span></div></i-tab-item>
-      <i-tab-item name="2" label="2" class="tab-item">
-        <i-button>111</i-button>
-        <template #title="slotProps">
-          {{slotProps.label}}-{{slotProps.label}}
-          <span>{{2}}</span>
-        </template>
-      </i-tab-item>
-    </i-tabs>
-  `,
+  template: '<i-button v-bind="args" @click="handleClick" ></i-button>',
 });
 
 export const Primary: any = Template.bind({});
