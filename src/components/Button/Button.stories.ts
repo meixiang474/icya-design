@@ -1,21 +1,10 @@
 import Button from "./index.vue";
-import ButtonGroup from "../ButtonGroup";
+import IButtonGroup from "../ButtonGroup";
 
 export default {
   title: "Components/Button",
   component: Button,
   argTypes: {
-    // slots
-    default: {
-      table: {
-        category: "slots",
-      },
-      description: "自定义按钮内容插槽",
-      control: {
-        type: null,
-      },
-      default: "button ｜ link",
-    },
     // props
     disabled: {
       table: {
@@ -26,8 +15,11 @@ export default {
     size: {
       table: {
         category: "props",
+        type: {
+          summary: "lg|sm|md",
+        },
       },
-      description: "按钮大小 'lg' | 'sm' | 'md'",
+      description: "按钮大小",
       control: {
         type: "radio",
         options: ["lg", "sm", "md"],
@@ -36,15 +28,61 @@ export default {
     btnType: {
       table: {
         category: "props",
+        type: {
+          summary: "primary|default|danger|link",
+        },
       },
-      description: "按钮类型 'primary' | 'default' | 'danger' | 'link'",
+      description: "按钮类型",
       control: {
         type: "radio",
         options: ["primary", "default", "danger", "link"],
       },
     },
     href: {
-      description: "可选",
+      table: {
+        category: "props",
+        type: {
+          summary: "string",
+        },
+      },
+      description: "link类型button的地址(可选)",
+    },
+    loading: {
+      table: {
+        category: "props",
+        type: {
+          summary: "boolean",
+        },
+      },
+      description: "是否为loading状态",
+    },
+    round: {
+      table: {
+        category: "props",
+        type: {
+          summary: "boolean",
+        },
+      },
+      description: "是否圆角",
+    },
+    // slots
+    default: {
+      table: {
+        category: "slots",
+        type: {
+          summary: "slot",
+        },
+      },
+      description: "自定义按钮内容",
+    },
+    icon: {
+      table: {
+        category: "slots",
+        type: {
+          summary: "slot",
+        },
+      },
+      description: "自定义图标",
     },
   },
 };
@@ -52,31 +90,47 @@ export default {
 const Template = (args: any) => ({
   components: { IButton: Button },
   setup() {
-    const handleClick = () => {
-      alert("click");
-    };
-    return { args, handleClick };
+    return { args };
   },
-  template:
-    '<i-button v-bind="args" @click="handleClick" icon="loading" loading ></i-button>',
+  template: '<i-button v-bind="args"></i-button>',
 });
 
-export const Primary: any = Template.bind({});
-export const Large: any = Template.bind({});
-Large.args = {
-  size: "lg",
+export const Knobs: any = Template.bind({});
+
+Knobs.parameters = {
+  docs: {
+    source: {
+      code: `
+        <i-button>button</i-button>
+      `,
+    },
+  },
 };
 
-export const 按钮组 = (args: any) => ({
-  components: { IButton: Button, IButtonGroup: ButtonGroup },
+export const ButtonGroup = (args: any) => ({
+  components: { IButton: Button, IButtonGroup },
   setup() {
     return { args };
   },
   template: `
     <i-button-group>
-      <i-button v-bind="args">111</i-button>
-      <i-button v-bind="args"/>
-      <i-button v-bind="args"/>
+      <i-button v-bind="args" btnType="primary">left</i-button>
+      <i-button v-bind="args" btnType="primary">center</i-button>
+      <i-button v-bind="args" btnType="primary">right</i-button>
     </i-button-group>
   `,
 });
+
+ButtonGroup.parameters = {
+  docs: {
+    source: {
+      code: `
+<i-button-group>
+  <i-button btnType="primary">left</i-button>
+  <i-button btnType="primary">center</i-button>
+  <i-button btnType="primary">right</i-button>
+</i-button-group>
+      `,
+    },
+  },
+};

@@ -3,8 +3,12 @@
     <slot>link</slot>
   </a>
   <button v-else :class="classes" :disabled="disabled">
-    <slot name="icon" v-if="icon || loading">
-      <i-icon :icon="icon || 'loading'" :spin="loading"></i-icon>
+    <slot name="icon">
+      <i-icon
+        v-if="icon || loading"
+        :icon="icon || 'loading'"
+        :spin="loading"
+      ></i-icon>
     </slot>
     <slot>button</slot>
   </button>
