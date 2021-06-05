@@ -6,46 +6,42 @@ export default {
   title: "Components/Icon",
   component: Icon,
   argTypes: {
-    // slots
-    default: {
-      table: {
-        category: "slots",
-      },
-      description: "自定义按钮内容插槽",
-      control: {
-        type: null,
-      },
-      default: "button ｜ link",
-    },
     // props
-    disabled: {
+    icon: {
       table: {
         category: "props",
       },
-      description: "是否禁用按钮",
+      description: "图标名称，详见下表",
     },
-    size: {
+    block: {
       table: {
         category: "props",
+        defaultValue: {
+          summary: false,
+        },
       },
-      description: "按钮大小 'lg' | 'sm' | 'md'",
+      description: "是否是block",
+    },
+    color: {
+      table: {
+        category: "props",
+        defaultValue: {
+          summary: "black",
+        },
+      },
+      description: "图标颜色",
       control: {
-        type: "radio",
-        options: ["lg", "sm", "md"],
+        type: "color",
       },
     },
-    btnType: {
+    spin: {
       table: {
         category: "props",
+        defaultValue: {
+          summary: false,
+        },
       },
-      description: "按钮类型 'primary' | 'default' | 'danger' | 'link'",
-      control: {
-        type: "radio",
-        options: ["primary", "default", "danger", "link"],
-      },
-    },
-    href: {
-      description: "可选",
+      description: "是否旋转",
     },
   },
 };
@@ -55,7 +51,7 @@ const Template = (args: any) => ({
   setup() {
     return { args };
   },
-  template: `<i-icon v-bind="args" ></i-icon>`,
+  template: `<i-icon v-bind="args"></i-icon>`,
 });
 
 export const Primary: any = Template.bind({});
@@ -63,12 +59,23 @@ Primary.args = {
   icon: "watch",
 };
 
-export const Label = () => ({
+Primary.parameters = {
+  docs: {
+    source: {
+      code: `
+        <i-icon icon="watch"></i-icon>
+      `,
+    },
+  },
+};
+
+export const AllIcons = (args: any) => ({
   components: { IIcon: Icon },
   setup() {
-    return { icons };
+    return { args, icons };
   },
-  template: `<ul class="icon-story-ul">
+  template: `
+  <ul class="icon-story-ul">
     <li v-for="(value, key) in icons" :key="key" class="icon-story-li">
       <i-icon :icon="key"></i-icon>
       <div class="icon-story-div">{{key}}</div>
