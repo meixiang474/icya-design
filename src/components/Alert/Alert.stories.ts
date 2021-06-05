@@ -198,28 +198,24 @@ TrggerCloseEvent.parameters = {
   docs: {
     source: {
       code: `
-<template>
-  <i-alert title="标题" content="这是内容" @close="handleClose"></i-alert>
-</template>
+<i-alert title="标题" content="这是内容" v-on:close="handleClose"></i-alert>
     
-<script lang="ts">
-  import { defineComponent } from "vue";
-  import { IMessage, IAlert } from "./components";
+import { defineComponent } from "vue";
+import { IMessage, IAlert } from "./components";
   
-  export default defineComponent({
-    components: {
-      IAlert,
-    },
-    setup() {
-      const handleClose = () => {
-        IMessage.success("close事件触发成功");
-      };
-      return {
-        handleClose,
-      };
-    },
-  });
-</script>     
+export default defineComponent({
+  components: {
+    IAlert,
+  },
+  setup() {
+    const handleClose = () => {
+      IMessage.success("close事件触发成功");
+    };
+    return {
+      handleClose,
+    };
+  },
+});
 `,
     },
   },

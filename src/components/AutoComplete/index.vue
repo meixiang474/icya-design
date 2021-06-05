@@ -9,6 +9,7 @@
       :icon="icon"
       @change="handleChange"
       @keydown="handleKeyDown"
+      :readonly="readonly"
       ref="inputRef"
     ></i-input>
     <transition name="open">
