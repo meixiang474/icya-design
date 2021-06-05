@@ -54,12 +54,12 @@ const Template = (args: any) => ({
   template: `<i-icon v-bind="args"></i-icon>`,
 });
 
-export const Primary: any = Template.bind({});
-Primary.args = {
+export const Knobs: any = Template.bind({});
+Knobs.args = {
   icon: "watch",
 };
 
-Primary.parameters = {
+Knobs.parameters = {
   docs: {
     source: {
       code: `

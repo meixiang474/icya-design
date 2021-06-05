@@ -5,7 +5,7 @@
     </div>
     <div class="icyad-input-container">
       <div className="icon-wrapper" v-if="icon">
-        <icon :icon="icon"></icon>
+        <i-icon :icon="icon"></i-icon>
       </div>
       <input
         class="icyad-input-inner"
@@ -27,7 +27,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from "@vue/runtime-core";
 import icons from "../icons";
-import Icon from "../Icon";
+import IIcon from "../Icon";
 
 type InputSize = "lg" | "sm" | "md";
 type InputType = "password" | "text";
@@ -65,7 +65,7 @@ export default defineComponent({
   },
   emits: ["change"],
   components: {
-    Icon,
+    IIcon,
   },
   setup(props, ctx) {
     const internalValue = ref("");
