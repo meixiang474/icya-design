@@ -4,46 +4,54 @@ export default {
   title: "Components/Progress",
   component: Progress,
   argTypes: {
-    // slots
-    default: {
-      table: {
-        category: "slots",
-      },
-      description: "自定义按钮内容插槽",
-      control: {
-        type: null,
-      },
-      default: "button ｜ link",
-    },
     // props
-    disabled: {
+    count: {
       table: {
         category: "props",
+        defaulValue: {
+          summary: 30,
+        },
       },
-      description: "是否禁用按钮",
+      description: "progress进度值",
     },
-    size: {
+    width: {
+      table: {
+        category: "props",
+        defaultValue: {
+          summary: 500,
+        },
+      },
+      description: "progress长度，单位px",
+    },
+    text: {
       table: {
         category: "props",
       },
-      description: "按钮大小 'lg' | 'sm' | 'md'",
+      description: "progress末尾文本，默认是进度值",
+    },
+    primary: {
+      table: {
+        category: "props",
+        defaultValue: {
+          summary: "#1890ff",
+        },
+      },
+      description: "progress填充颜色",
       control: {
-        type: "radio",
-        options: ["lg", "sm", "md"],
+        type: "color",
       },
     },
-    btnType: {
+    base: {
       table: {
         category: "props",
+        defaultValue: {
+          summary: "#f5f5f5",
+        },
       },
-      description: "按钮类型 'primary' | 'default' | 'danger' | 'link'",
+      description: "progress基础颜色",
       control: {
-        type: "radio",
-        options: ["primary", "default", "danger", "link"],
+        type: "color",
       },
-    },
-    href: {
-      description: "可选",
     },
   },
 };
@@ -51,12 +59,19 @@ export default {
 const Template = (args: any) => ({
   components: { IProgress: Progress },
   setup() {
-    const handleClick = () => {
-      alert("click");
-    };
-    return { args, handleClick };
+    return { args };
   },
-  template: '<i-progress v-bind="args" @click="handleClick"></i-progress>',
+  template: '<i-progress v-bind="args"></i-progress>',
 });
 
-export const Primary: any = Template.bind({});
+export const Knobs: any = Template.bind({});
+
+Knobs.parameters = {
+  docs: {
+    source: {
+      code: `
+ <i-progress :count="30"></i-progress>     
+      `,
+    },
+  },
+};

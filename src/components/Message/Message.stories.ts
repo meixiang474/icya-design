@@ -33,6 +33,9 @@ export default {
         type: {
           summary: "success|error|info|warning",
         },
+        defaultValue: {
+          summary: "success",
+        },
       },
       description: "message类型",
       control: {
