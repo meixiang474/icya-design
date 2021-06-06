@@ -1,4 +1,3 @@
-import { ref } from "vue";
 import Select from "./index.vue";
 import Option from "../Option";
 
