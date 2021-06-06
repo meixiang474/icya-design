@@ -88,6 +88,22 @@
     }
   }
 }
+.icyad-btn-warning {
+  @include button-style($warning, $warning, $white);
+  svg {
+    path {
+      fill: $white !important;
+    }
+  }
+}
+.icyad-btn-success {
+  @include button-style($success, $success, $white);
+  svg {
+    path {
+      fill: $white !important;
+    }
+  }
+}
 .icyad-btn-default {
   @include button-style(
     $white,

@@ -29,13 +29,13 @@ export default {
       table: {
         category: "props",
         type: {
-          summary: "primary|default|danger|link",
+          summary: "primary|default|warning|success|danger|link",
         },
       },
       description: "按钮类型",
       control: {
         type: "radio",
-        options: ["primary", "default", "danger", "link"],
+        options: ["primary", "default", "danger", "warning", "success", "link"],
       },
     },
     href: {

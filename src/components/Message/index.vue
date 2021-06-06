@@ -40,7 +40,7 @@ const iconMap: Record<MessageType, keyof typeof icons> = {
 };
 
 const iconColorMap: Record<MessageType, string> = {
-  warning: "#e6a23c",
+  warning: "white",
   error: "white",
   success: "white",
   info: "#6c757d",

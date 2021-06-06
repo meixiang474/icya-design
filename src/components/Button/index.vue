@@ -20,7 +20,7 @@ import IIcon from "../Icon";
 import icons from "../icons";
 
 type ButtonSize = "lg" | "sm" | "md";
-type ButtonType = "primary" | "default" | "danger" | "link";
+type ButtonType = "primary" | "default" | 'success' | "warning" | "danger" | "link";
 
 export default defineComponent({
   name: "i-button",
