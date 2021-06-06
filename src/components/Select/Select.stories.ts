@@ -6,46 +6,65 @@ export default {
   title: "Components/Select",
   component: Select,
   argTypes: {
-    // slots
-    default: {
-      table: {
-        category: "slots",
-      },
-      description: "自定义按钮内容插槽",
-      control: {
-        type: null,
-      },
-      default: "button ｜ link",
-    },
     // props
+    value: {
+      table: {
+        category: "props",
+      },
+      description: "受控模式",
+    },
     disabled: {
       table: {
         category: "props",
       },
-      description: "是否禁用按钮",
+      description: "是否禁用",
     },
-    size: {
+    placeholder: {
       table: {
         category: "props",
       },
-      description: "按钮大小 'lg' | 'sm' | 'md'",
-      control: {
-        type: "radio",
-        options: ["lg", "sm", "md"],
-      },
+      description: "placeholder",
     },
-    btnType: {
+    multiple: {
       table: {
         category: "props",
       },
-      description: "按钮类型 'primary' | 'default' | 'danger' | 'link'",
-      control: {
-        type: "radio",
-        options: ["primary", "default", "danger", "link"],
-      },
+      description: "是否多选",
     },
-    href: {
-      description: "可选",
+    defaultValue: {
+      table: {
+        category: "props",
+      },
+      description: "默认value",
+    },
+    // events:
+    change: {
+      table: {
+        category: "events",
+        type: {
+          summary: "(val: string | string[]) => any",
+        },
+      },
+      description: "select值发生变化时触发",
+    },
+    // slots
+    empty: {
+      table: {
+        category: "slots",
+        type: {
+          summary: "slot",
+        },
+      },
+      description: "选项为空时所展示的内容",
+    },
+    default: {
+      table: {
+        category: "slots",
+        type: {
+          summary: "Option",
+        },
+      },
+      description: "选项",
     },
   },
 };
@@ -53,24 +72,45 @@ export default {
 const Template = (args: any) => ({
   components: { ISelect: Select, IOption: Option },
   setup() {
-    const value = ref<string[]>([]);
     return {
       args,
-      value,
     };
   },
   template: `
-  <div :style="{width: '420px'}">
-    <i-select v-bind="args" placeholder="来选择" multiple>
-      <i-option value="1" disabled></i-option>
+  <div :style="{width: '420px', height: '300px'}">
+    <i-select v-bind="args">
+      <i-option value="disabled" disabled></i-option>
       <i-option value="apple" label="苹果"></i-option>
       <i-option value="orange" label="橘子"></i-option>
       <i-option value="banana" label="香蕉"></i-option>
-      <i-option value="watermelon" label="柠檬"></i-option>
-      <i-option value="666666666666666666"></i-option>
+      <i-option value="watermelon" label="西瓜"></i-option>
+      <i-option value="lemon" label="柠檬"></i-option>
     </i-select>
   </div>
   `,
 });
 
-export const Primary: any = Template.bind({});
+export const Knobs: any = Template.bind({});
+
+Knobs.args = {
+  placeholder: "select fruit",
+};
+
+Knobs.parameters = {
+  docs: {
+    source: {
+      code: `
+<div :style="{width: '420px', height: '300px'}">
+  <i-select>
+    <i-option value="disabled" disabled></i-option>
+    <i-option value="apple" label="苹果"></i-option>
+    <i-option value="orange" label="橘子"></i-option>
+    <i-option value="banana" label="香蕉"></i-option>
+    <i-option value="watermelon" label="西瓜"></i-option>
+    <i-option value="lemon" label="柠檬"></i-option>
+  </i-select>
+</div>     
+      `,
+    },
+  },
+};

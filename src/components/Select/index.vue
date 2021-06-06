@@ -122,9 +122,12 @@ export default defineComponent({
     const open = ref(false);
     const isEmpty = computed(
       () =>
-        ctx.slots.default!().filter(
-          (item) => item.props != null && (item.props as any).value != null
-        ).length === 0
+        ctx.slots.default == null ||
+        ctx.slots
+          .default()
+          .filter(
+            (item) => item.props != null && (item.props as any).value != null
+          ).length === 0
     );
     const containerHeight = computed(() => {
       if (containerRef.value) {
@@ -196,7 +199,15 @@ export default defineComponent({
       } else {
         ctx.emit("change", val);
       }
-      if (Array.isArray(externalValue.value)) return;
+      if (
+        Array.isArray(externalValue.value) ||
+        typeof externalValue.value === "string"
+      ) {
+        nextTick(() => {
+          open.value = false;
+        });
+        return;
+      }
       if (multiple.value) {
         if (internalValues.value.includes(val!)) {
           internalValues.value = internalValues.value.filter(
@@ -234,6 +245,7 @@ export default defineComponent({
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault();
       if (!open.value) return;
       switch (e.key) {
         case KEYBOARD.ENTER:

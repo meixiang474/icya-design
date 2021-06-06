@@ -57,14 +57,14 @@ export default defineComponent({
   emits: ["change"],
   setup(props, ctx) {
     const slots = computed(() => {
-      return ctx.slots.default!();
+      return ctx.slots.default ? ctx.slots.default() : [];
     });
     const titles = computed<{ [key: string]: any }>(() => {
       return slots.value.map((slot) => ({
         ...slot.props,
         vnode: (slot.children as any).title
           ? (slot.children as any).title({
-              label: slot.props!.label ? slot.props!.label : slot.props!.name,
+              label: slot.props?.label ? slot.props?.label : slot.props?.name,
             })
           : null,
       }));
@@ -74,18 +74,20 @@ export default defineComponent({
       return classes;
     });
     const internalActiveName = ref<string | number>(
-      props.defaultName == null ? slots.value[0].props!.name : props.defaultName
+      props.defaultName == null
+        ? slots.value[0]?.props!.name
+        : props.defaultName
     );
     const activeContents = computed<any[]>(() => {
       const activeSlot = slots.value.find((slot) => {
         return (
-          slot.props!.name ===
+          slot.props?.name ===
           (props.activeName == null
             ? internalActiveName.value
             : props.activeName)
         );
       });
-      return (activeSlot!.children as any).default();
+      return (activeSlot?.children as any).default();
     });
     const handleClick = (name: string | number) => {
       if (props.activeName) {

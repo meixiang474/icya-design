@@ -21,22 +21,23 @@ export function exchangeValueToLabel(
 ) {
   if (Array.isArray(value)) {
     return value.map((val) => {
-      const targetSlot = ctx.slots.default!().find(
-        (item) => item.props && item.props.value === val
-      );
+      const targetSlot = ctx.slots
+        .default?.()
+        .find((item) => item.props && item.props.value === val);
+
       if (targetSlot) {
-        const label = targetSlot.props!.label;
+        const label = targetSlot.props?.label;
         return (label == null ? val : label) as string;
       } else {
         return val;
       }
     });
   } else {
-    const targetSlot = ctx.slots.default!().find(
-      (item) => item.props && item.props.value === value
-    );
+    const targetSlot = ctx.slots
+      .default?.()
+      .find((item) => item.props && item.props.value === value);
     if (targetSlot) {
-      const label = targetSlot.props!.label;
+      const label = targetSlot.props?.label;
       return (label == null ? value : label) as string;
     } else {
       return value;
