@@ -57,7 +57,11 @@ const Template = (args: any) => ({
     return { args, handleClick };
   },
   template:
-    '<i-upload v-bind="args" action="http://39.101.151.113:6006/api/utils/upload" multiple  list-type="picture"></i-upload>',
+    '<i-upload v-bind="args"  multiple  list-type="picture"></i-upload>',
 });
 
 export const Primary: any = Template.bind({});
+
+Primary.args = {
+  action: "http://39.101.151.113:6006/api/utils/upload",
+};
