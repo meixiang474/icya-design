@@ -90,8 +90,8 @@ export default defineComponent({
       return (activeSlot?.children as any).default();
     });
     const handleClick = (name: string | number) => {
+      ctx.emit("change", name);
       if (props.activeName) {
-        ctx.emit("change", name);
         return;
       }
       internalActiveName.value = name;
