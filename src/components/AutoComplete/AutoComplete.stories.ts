@@ -182,7 +182,7 @@ Knobs.parameters = {
 </div>
 
 import { defineComponent } from "vue";
-import { IAutoComplete } from "./components";
+import { IAutoComplete } from "icyad";
   
 export default defineComponent({
   components: {
