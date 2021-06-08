@@ -65,6 +65,18 @@ export default {
       },
       description: "是否圆角",
     },
+    icon: {
+      table: {
+        category: "props",
+        type: {
+          summary: "string",
+        },
+      },
+      description: "图标名称，参考Icon组件",
+      control: {
+        type: "text",
+      },
+    },
     // slots
     default: {
       table: {
@@ -75,7 +87,7 @@ export default {
       },
       description: "自定义按钮内容",
     },
-    icon: {
+    "icon(slot)": {
       table: {
         category: "slots",
         type: {

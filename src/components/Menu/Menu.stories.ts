@@ -88,7 +88,7 @@ Knobs.parameters = {
 <i-menu mode="vertical" :default-open-submenus="[3]">
   <i-menu-item :index="0">menu0</i-menu-item>
   <i-menu-item :index="1">menu1</i-menu-item>
-  <i-menu-item :index="2" disabled>menu2i-menu-item>
+  <i-menu-item :index="2" disabled>menu2</i-menu-item>
   <i-sub-menu :index="3" title="menu3">
     <i-menu-item index="3-1">menu3-1</i-menu-item>
     <i-menu-item index="3-2">menu3-2</i-menu-item>

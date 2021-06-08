@@ -14,7 +14,7 @@ import ITag from "./Tag";
 import ISelect from "./Select";
 import IOption from "./Option";
 import IProgress from "./Progress";
-import IUpload from "./Upload";
+import IUpload, { UploadFile } from "./Upload";
 import IRow from "./Row";
 import ICol from "./Col";
 import IMessage from "./Message";
@@ -67,6 +67,7 @@ export {
   IRow,
   ICol,
   IMessage,
+  UploadFile,
 };
 
 export default {

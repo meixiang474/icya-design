@@ -90,19 +90,9 @@ import IButton from "../Button";
 import { last } from "lodash-es";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { UploadFile } from "./types";
 type CheckUpload = (file: File) => boolean | Promise<File>;
 type FileListType = "picture" | "text";
-type UploadStatus = "ready" | "loading" | "success" | "error";
-export interface UploadFile {
-  uid: string;
-  size: number;
-  name: string;
-  status: UploadStatus;
-  raw: File;
-  resp?: any;
-  percent: number;
-  url?: string;
-}
 
 const resolveName = (name: string | string[], index: number) => {
   if (Array.isArray(name)) {
@@ -122,13 +112,16 @@ export default defineComponent({
     files: {
       type: Array as PropType<UploadFile[]>,
     },
+    defaultFiles: {
+      type: Array as PropType<UploadFile[]>,
+      default: () => [],
+    },
     name: {
       type: [String, Array] as PropType<string | string[]>,
       default: "file",
     },
     action: {
       type: String,
-      required: true,
     },
     beforeUpload: {
       type: Function as PropType<CheckUpload>,
@@ -171,10 +164,10 @@ export default defineComponent({
       default: true,
     },
   },
-  emits: ["progress", "success", "error", "change", "removeFile"],
+  emits: ["progress", "success", "error", "change"],
   setup(props, ctx) {
     const fileInput = ref<null | HTMLInputElement>(null);
-    const filesList = ref<UploadFile[]>([]);
+    const filesList = ref<UploadFile[]>(props.defaultFiles);
     const isDragOver = ref(false);
     const isUploading = computed(() => {
       return (props.files || filesList.value).some(
@@ -192,8 +185,15 @@ export default defineComponent({
       return false;
     });
     const removeFile = (id: string) => {
-      ctx.emit("removeFile", id);
-      filesList.value = filesList.value.filter((item) => item.uid !== id);
+      const file = [...(props.files || filesList.value)].find(
+        (item) => item.uid === id
+      )!;
+      const list = [...(props.files || filesList.value)].filter(
+        (item) => item.uid !== id
+      );
+      ctx.emit("change", { file, list });
+      if (props.files != null) return;
+      filesList.value = list;
     };
     const triggerUpload = () => {
       if (fileInput.value) {
@@ -206,18 +206,18 @@ export default defineComponent({
         props.customRequest({
           file: readyFile,
           list: props.files || filesList.value,
-          raw: readyFile.raw,
+          raw: readyFile.raw!,
         });
         return;
       }
       const formData = new FormData();
-      formData.append(resolveName(props.name, index), readyFile.raw);
+      formData.append(resolveName(props.name, index), readyFile.raw!);
       Object.keys(props.data).forEach((item) => {
         formData.append(item, props.data[item]);
       });
       readyFile.status = "loading";
       axios
-        .post(props.action, formData, {
+        .post(props.action!, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             ...props.headers,
@@ -270,11 +270,12 @@ export default defineComponent({
           console.error("upload File error", e);
         }
       }
-      filesList.value.push(fileObj);
       ctx.emit("change", {
         file: fileObj,
-        list: props.files || filesList.value,
+        list: [...(props.files || filesList.value), fileObj],
       });
+      filesList.value.push(fileObj);
+
       if (props.autoUpload) {
         postFile(fileObj, filesList.value.length - 1);
       }

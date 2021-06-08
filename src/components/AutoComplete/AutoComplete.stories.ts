@@ -107,7 +107,7 @@ export default {
       table: {
         category: "props",
         type: {
-          summary: "() => any[] | Promise<any[]>",
+          summary: "(val: string) => any[] | Promise<any[]>",
         },
       },
       description:
@@ -189,7 +189,7 @@ export default defineComponent({
     IAutoComplete,
   },
   setup() {
-    const fetchSuggestions = () => {
+    const fetchSuggestions = (val: string) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([val, "apple", "banana"]);
