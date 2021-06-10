@@ -18,6 +18,7 @@ import IUpload, { UploadFile } from "./Upload";
 import IRow from "./Row";
 import ICol from "./Col";
 import IMessage from "./Message";
+import IVirtualList from "./VirtualList";
 
 const components = [
   IButton,
@@ -38,6 +39,7 @@ const components = [
   IUpload,
   IRow,
   ICol,
+  IVirtualList,
 ];
 
 const install = (app: App) => {
@@ -68,6 +70,7 @@ export {
   ICol,
   IMessage,
   UploadFile,
+  IVirtualList,
 };
 
 export default {
