@@ -11,7 +11,9 @@
       ref="listRef"
     >
       <div v-for="item in visibleData" :vid="item.id" :key="item.id">
-        <slot :item="item"></slot>
+        <slot :item="item">
+          {{ item.id }}
+        </slot>
       </div>
     </div>
   </div>
@@ -48,6 +50,10 @@ export default defineComponent({
     variable: {
       type: Boolean,
       default: false,
+    },
+    throttle: {
+      type: Number,
+      default: 50,
     },
   },
   setup(props) {
@@ -106,7 +112,7 @@ export default defineComponent({
             start.value * props.size - props.size * prevCount.value;
         }
       },
-      200,
+      props.throttle,
       { leading: false }
     );
 

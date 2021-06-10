@@ -5,76 +5,41 @@ export default {
   component: IVirtualList,
   argTypes: {
     // props
-    disabled: {
-      table: {
-        category: "props",
-      },
-      description: "是否禁用按钮",
-    },
     size: {
       table: {
         category: "props",
-        type: {
-          summary: "lg|sm|md",
-        },
       },
-      description: "按钮大小",
-      control: {
-        type: "radio",
-        options: ["lg", "sm", "md"],
-      },
+      description: "列表中预计每项的高度",
     },
-    btnType: {
+    remain: {
+      table: {
+        category: "props",
+      },
+      description: "预计展示多少项",
+    },
+    items: {
       table: {
         category: "props",
         type: {
-          summary: "primary|default|warning|success|danger|link",
+          summary: "ItemProps[]",
+        },
+        defaultValue: {
+          summary: "[]",
         },
       },
-      description: "按钮类型",
-      control: {
-        type: "radio",
-        options: ["primary", "default", "danger", "warning", "success", "link"],
-      },
+      description: "每项的数据，必须有一个id属性为string，其他属性任意",
     },
-    href: {
+    variable: {
       table: {
         category: "props",
-        type: {
-          summary: "string",
-        },
       },
-      description: "link类型button的地址(可选)",
+      description: "每项的高度是否不固定，选择此模式时性能会有损耗",
     },
-    loading: {
+    throttle: {
       table: {
         category: "props",
-        type: {
-          summary: "boolean",
-        },
       },
-      description: "是否为loading状态",
-    },
-    round: {
-      table: {
-        category: "props",
-        type: {
-          summary: "boolean",
-        },
-      },
-      description: "是否圆角",
-    },
-    icon: {
-      table: {
-        category: "props",
-        type: {
-          summary: "string",
-        },
-      },
-      description: "图标名称，参考Icon组件",
-      control: {
-        type: "text",
-      },
+      description: "截流时间，单位ms",
     },
     // slots
     default: {
@@ -84,16 +49,7 @@ export default {
           summary: "slot",
         },
       },
-      description: "自定义按钮内容",
-    },
-    "icon(slot)": {
-      table: {
-        category: "slots",
-        type: {
-          summary: "slot",
-        },
-      },
-      description: "自定义图标",
+      description: "自定义每项",
     },
   },
 };
@@ -107,7 +63,7 @@ const Template = (args: any) => ({
     <div :style="{height: '500px'}">
       <i-virtual-list v-bind="args">
         <template v-slot="slotProps">
-          <div :style="{height: slotProps.item.id % 2 ? '100px' : '200px'}" :style="{backgroundColor: slotProps.item.id % 2 ? 'red' : 'green'}">
+          <div :style="{backgroundColor: slotProps.item.id % 2 ? '#adb5bd' : '#0d6efd', height: '100px'}">
             {{slotProps.item.id}}
           </div>
         </template>
@@ -119,8 +75,95 @@ const Template = (args: any) => ({
 export const Knobs: any = Template.bind({});
 
 Knobs.args = {
-  size: 150,
+  size: 100,
   remain: 5,
-  items: new Array(500).fill(null).map((item, index) => ({ id: index + "" })),
-  variable: true,
+  items: new Array(100).fill(null).map((item, index) => ({ id: index + "" })),
+  variable: false,
+};
+
+Knobs.parameters = {
+  docs: {
+    source: {
+      code: `
+<div :style="{height: '500px'}">
+  <i-virtual-list :items="items" :size="100" :remain="5">
+    <template v-slot="slotProps">
+      <div :style="{backgroundColor: slotProps.item.id % 2 ? '#adb5bd' : '#0d6efd', height: '100px'}">
+        {{slotProps.item.id}}
+      </div>
+    </template>
+  </i-virtual-list>
+</div>
+
+import {defineComponent} from 'vue';
+import {IVirtualList} from 'icyad';
+
+export default defineComponent({
+  components: {
+    IVirtualList
+  },
+  setup() {
+    const item = new Array(100).fill(null).map((item, index) => ({ id: index + "" }));
+    return {
+      items
+    }
+  }
+})
+      `,
+    },
+  },
+};
+
+export const VaribaleMode = (args: any) => ({
+  components: { IVirtualList },
+  setup() {
+    const items = new Array(100)
+      .fill(null)
+      .map((item, index) => ({ id: index + "" }));
+    return { args, items };
+  },
+  template: `
+    <div :style="{height: '500px'}">
+      <i-virtual-list :size="100" :remain="5" :items="items">
+        <template v-slot="slotProps">
+          <div :style="{backgroundColor: slotProps.item.id % 2 ? '#adb5bd' : '#0d6efd', height: slotProps.item.id % 2 ? '100px' : '200px'}">
+            {{slotProps.item.id}}
+          </div>
+        </template>
+      </i-virtual-list>
+    </div>
+  `,
+});
+
+VaribaleMode.parameters = {
+  docs: {
+    source: {
+      code: `
+<div :style="{height: '500px'}">
+  <i-virtual-list :items="items" :size="100" :remain="5" variable>
+    <template v-slot="slotProps">
+      <div :style="{backgroundColor: slotProps.item.id % 2 ? '#adb5bd' : '#0d6efd', height: slotProps.item.id % 2 ? '100px' : '200px'}">
+        {{slotProps.item.id}}
+      </div>
+    </template>
+  </i-virtual-list>
+</div>
+
+import {defineComponent} from 'vue';
+import {IVirtualList} from 'icyad';
+
+export default defineComponent({
+  components: {
+    IVirtualList
+  },
+  setup() {
+    const item = new Array(100).fill(null).map((item, index) => ({ id: index + "" }));
+    return {
+      items
+    }
+  }
+})
+      `,
+    },
+  },
 };
