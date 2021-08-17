@@ -62,7 +62,7 @@ export default defineComponent({
     const titles = computed<{ [key: string]: any }>(() => {
       return slots.value.map((slot) => ({
         ...slot.props,
-        vnode: (slot.children as any).title
+        vnode: (slot.children as any)?.title
           ? (slot.children as any).title({
               label: slot.props?.label ? slot.props?.label : slot.props?.name,
             })
@@ -87,7 +87,7 @@ export default defineComponent({
             : props.activeName)
         );
       });
-      return (activeSlot?.children as any).default();
+      return (activeSlot?.children as any)?.default?.();
     });
     const handleClick = (name: string | number) => {
       ctx.emit("change", name);
