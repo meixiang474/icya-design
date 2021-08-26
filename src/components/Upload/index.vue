@@ -191,6 +191,9 @@ export default defineComponent({
       const list = [...(props.files || filesList.value)].filter(
         (item) => item.uid !== id
       );
+      if (file.url) {
+        URL.revokeObjectURL(file.url);
+      }
       ctx.emit("change", { file, list });
       if (props.files != null) return;
       filesList.value = list;
