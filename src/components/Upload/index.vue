@@ -96,7 +96,7 @@ const resolveName = (name: string | string[], index: number) => {
 };
 
 export default defineComponent({
-  name: "uploader",
+  name: "IUpload",
   components: {
     IIcon,
     IProgress,
