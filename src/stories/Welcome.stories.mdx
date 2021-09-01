@@ -1,0 +1,49 @@
+<Meta title="ATOM DESIGN /Intro" />
+
+## ATOM DESIGN EXPLORE
+
+<br />
+
+作者：meixiang
+
+此项目用来探索一些组件的原理并学习 vue3.0
+
+## 安装
+
+```zsh
+npm install icyad
+```
+
+## 引入组件库
+
+src/main.ts
+
+```javascript
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./components/index.scss";
+
+import icyad from "icyad";
+import "icyad/dist/index.css";
+
+createApp(App)
+  .use(icyad)
+  .mount("#app");
+```
+
+src/App.vue
+
+```html
+<template>
+  <i-button>
+    Welcome to icya-design
+  </i-button>
+</template>
+
+<script lang="ts">
+  import { defineComponent } from "vue";
+  export default defineComponent({
+    name: "App",
+  });
+</script>
+```

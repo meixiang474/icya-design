@@ -4,7 +4,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { name } from "../package.json";
 const file = (type) => `dist/${name}.${type}.js`;
 const overrides = {
-  compilerOptions: { declaration: true },
+  compilerOptions: { target: "ES2015", declaration: true },
   exclude: [
     "tests/**/*.ts",
     "tests/**/*.tsx",
