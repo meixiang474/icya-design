@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "@vue/runtime-core";
+import { defineComponent, PropType, ref } from "vue";
 import Input, { inputProps } from "../Input/index.vue";
 import Icon from "../Icon";
 import { debounce } from "../utils";

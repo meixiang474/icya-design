@@ -27,7 +27,7 @@ import {
   onUnmounted,
   PropType,
   ref,
-} from "@vue/runtime-core";
+} from "vue";
 import { MessageType } from "./types";
 import IIcon from "../Icon";
 import icons from "../icons";

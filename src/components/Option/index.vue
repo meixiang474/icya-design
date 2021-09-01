@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject } from "@vue/runtime-core";
+import { computed, defineComponent, inject } from "vue";
 import { SELECT_CONTEXT, SELECT_EVENT } from "../constant";
 import { SelectContext } from "../types";
 import IIcon from "../Icon";

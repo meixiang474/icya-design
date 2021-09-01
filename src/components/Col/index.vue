@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject } from "@vue/runtime-core";
+import { computed, defineComponent, inject } from "vue";
 import { LayoutContext } from "../types";
 import { LAYOUT_CONTEXT } from "../constant";
 

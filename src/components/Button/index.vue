@@ -15,12 +15,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "@vue/runtime-core";
+import { computed, defineComponent, PropType } from "vue";
 import IIcon from "../Icon";
 import icons from "../icons";
 
 type ButtonSize = "lg" | "sm" | "md";
-type ButtonType = "primary" | "default" | 'success' | "warning" | "danger" | "link";
+type ButtonType =
+  | "primary"
+  | "default"
+  | "success"
+  | "warning"
+  | "danger"
+  | "link";
 
 export default defineComponent({
   name: "i-button",

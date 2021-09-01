@@ -1,4 +1,4 @@
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from "vue";
 
 const RenderVnode = defineComponent({
   props: {

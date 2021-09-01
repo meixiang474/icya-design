@@ -28,7 +28,7 @@ import {
   onUpdated,
   PropType,
   ref,
-} from "@vue/runtime-core";
+} from "vue";
 import { throttle } from "lodash-es";
 import { ItemProps } from "./types";
 

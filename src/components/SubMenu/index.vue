@@ -16,13 +16,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  inject,
-  onUnmounted,
-  ref,
-} from "@vue/runtime-core";
+import { computed, defineComponent, inject, onUnmounted, ref } from "vue";
 import { MENU_CONTEXT } from "../constant";
 import { MenuContext } from "../types";
 import Icon from "../Icon";

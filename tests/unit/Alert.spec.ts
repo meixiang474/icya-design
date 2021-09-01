@@ -19,7 +19,7 @@ describe("test Alert Component", () => {
     expect(wrapper.find(".icyad-alert-close").exists()).toBeTruthy();
     await wrapper.get(".icyad-alert-close").trigger("click");
     expect(wrapper.emitted()).toHaveProperty("close");
-    expect(wrapper.emitted("close")[0]).toEqual([]);
+    expect(wrapper.emitted("close")?.[0]).toEqual([]);
     const alertElement = wrapper.get(".icyad-alert");
     expect(getComputedStyle(alertElement.element).animation).toBe(
       "hide 0.2s ease-in-out forwards"

@@ -77,13 +77,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  ref,
-} from "@vue/runtime-core";
+import { computed, defineComponent, PropType, reactive, ref } from "vue";
 import IIcon from "../Icon";
 import IProgress from "../Progress";
 import IButton from "../Button";

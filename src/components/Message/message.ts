@@ -1,4 +1,4 @@
-import { createVNode, VNode } from "@vue/runtime-core";
+import { createVNode, VNode } from "vue";
 import { MessageFunction, MessageOptions, MessageParams } from "./types";
 import MessageComponent from "./index.vue";
 import { render } from "@vue/runtime-dom";

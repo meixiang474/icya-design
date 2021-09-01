@@ -5,12 +5,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  PropType,
-  provide,
-} from "@vue/runtime-core";
+import { computed, defineComponent, PropType, provide } from "vue";
 import { LAYOUT_CONTEXT } from "../constant";
 
 type JustifyType =

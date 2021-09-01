@@ -55,7 +55,7 @@ import {
   onMounted,
   onUnmounted,
   nextTick,
-} from "@vue/runtime-core";
+} from "vue";
 import { useClickOutside } from "../hooks";
 import IInput from "../Input";
 import IIcon from "../Icon";

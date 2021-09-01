@@ -15,13 +15,7 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onUnmounted,
-  PropType,
-  ref,
-} from "@vue/runtime-core";
+import { computed, defineComponent, onUnmounted, PropType, ref } from "vue";
 import Icon from "../Icon";
 
 type AlertType = "success" | "default" | "danger" | "warning";

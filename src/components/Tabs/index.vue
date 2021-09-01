@@ -2,14 +2,11 @@
   <div class="icyad-tabs">
     <ul :class="titleClasses">
       <li
-        :class="
-          `icyad-tabs-title-item ${
-            title.name ===
-            (activeName == null ? internalActiveName : activeName)
-              ? 'is-active'
-              : ''
-          } ${title.disabled === '' || title.disabled ? 'disabled' : ''}`
-        "
+        :class="`icyad-tabs-title-item ${
+          title.name === (activeName == null ? internalActiveName : activeName)
+            ? 'is-active'
+            : ''
+        } ${title.disabled === '' || title.disabled ? 'disabled' : ''}`"
         v-bind="title"
         v-for="title in titles"
         :key="title.name"
@@ -32,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, PropType } from "@vue/runtime-core";
+import { defineComponent, computed, ref, PropType } from "vue";
 import RenderVnode from "../RenderVnode";
 
 type TabsMode = "card" | "line";

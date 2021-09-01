@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from "@vue/runtime-core";
+import { computed, defineComponent, PropType, ref } from "vue";
 import icons from "../icons";
 import IIcon from "../Icon";
 

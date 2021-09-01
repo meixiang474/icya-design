@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "@vue/runtime-core";
+import { computed, defineComponent, PropType } from "vue";
 import icons from "../icons";
 
 export default defineComponent({

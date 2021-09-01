@@ -16,7 +16,7 @@ describe("test Menu and MenuItem Components", () => {
     wrapper = mount(Menu);
     wrapper.vm.onSelect(0);
     expect(wrapper.emitted()).toHaveProperty("select");
-    expect(wrapper.emitted("select")[0]).toEqual([0]);
+    expect(wrapper.emitted("select")?.[0]).toEqual([0]);
   });
   it("should render vertical mode when mode is set to vertical", () => {
     wrapper = mount(Menu, {

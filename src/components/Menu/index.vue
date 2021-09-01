@@ -5,13 +5,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  PropType,
-  computed,
-  ref,
-  provide,
-} from "@vue/runtime-core";
+import { defineComponent, PropType, computed, ref, provide } from "vue";
 import { MENU_CONTEXT } from "../constant";
 
 type MenuMode = "horizontal" | "vertical";
