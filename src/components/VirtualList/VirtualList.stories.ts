@@ -124,7 +124,7 @@ export const VaribaleMode = (args: any) => ({
   },
   template: `
     <div :style="{height: '500px'}">
-      <i-virtual-list :size="100" :remain="5" :items="items">
+      <i-virtual-list :size="100" :remain="5" :items="items" variable>
         <template v-slot="slotProps">
           <div :style="{backgroundColor: slotProps.item.id % 2 ? '#adb5bd' : '#0d6efd', height: slotProps.item.id % 2 ? '100px' : '200px'}">
             {{slotProps.item.id}}
